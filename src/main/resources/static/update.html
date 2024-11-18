@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog</title>
+</head>
+<body>
+    <h1>Update Blog</h1>
+    <form id="updateForm">
+        <label for="updateId">Blog ID:</label>
+        <input type="text" id="updateId" name="updateId" placeholder="Enter Blog ID" required><br><br>
+        <label for="updateContent">New Content:</label>
+        <textarea id="updateContent" name="updateContent" rows="4" cols="50" placeholder="Write updated content..." required></textarea><br><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="index.html">Back to Home</a>
+
+    <script>
+        document.getElementById('updateForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const updateId = document.getElementById('updateId').value.trim();
+            const updateContent = document.getElementById('updateContent').value.trim();
+
+            const response = await fetch(`/blogging/put/${updateId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: updateId, content: updateContent })
+            });
+
+            if (response.ok) {
+                alert('Blog updated successfully!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Failed to update blog.');
+            }
+        });
+    </script>
+</body>
+</html>

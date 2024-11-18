@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog</title>
+</head>
+<body>
+    <h1>Create Blog</h1>
+    <form id="createForm">
+        <label for="id">Blog ID:</label>
+        <input type="text" id="id" name="id" placeholder="Enter Blog ID" required><br><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" rows="4" cols="50" placeholder="Write your blog here..." required></textarea><br><br>
+        <button type="submit">Create</button>
+    </form>
+    <a href="index.html">Back to Home</a>
+
+    <script>
+        document.getElementById('createForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const id = document.getElementById('id').value.trim();
+            const content = document.getElementById('content').value.trim();
+
+            const response = await fetch('/blogging/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, content })
+            });
+
+            if (response.ok) {
+                alert('Blog created successfully!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Failed to create blog.');
+            }
+        });
+    </script>
+</body>
+</html>

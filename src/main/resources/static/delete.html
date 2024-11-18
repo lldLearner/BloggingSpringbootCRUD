@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Blog</title>
+</head>
+<body>
+    <h1>Delete Blog</h1>
+    <form id="deleteForm">
+        <label for="deleteId">Blog ID:</label>
+        <input type="text" id="deleteId" name="deleteId" placeholder="Enter Blog ID" required>
+        <button type="submit">Delete</button>
+    </form>
+    <div id="result"></div>
+    <a href="index.html">Back to Home</a>
+
+    <script>
+        document.getElementById('deleteForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const deleteId = document.getElementById('deleteId').value.trim();
+            
+            const response = await fetch(`/blogging/delete/${deleteId}`, {
+                method: 'DELETE',
+            });
+            
+            if (response.ok) {
+                alert('Blog deleted successfully!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Blog not found.');
+            }
+        });
+    </script>
+</body>
+</html>

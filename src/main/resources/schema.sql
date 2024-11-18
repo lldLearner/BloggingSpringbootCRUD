@@ -1,0 +1,4 @@
+CREATE TABLE BLOG (
+    id VARCHAR(255) PRIMARY KEY,
+    content VARCHAR(255)
+);

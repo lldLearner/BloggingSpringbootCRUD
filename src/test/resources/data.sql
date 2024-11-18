@@ -1,0 +1,2 @@
+INSERT INTO BLOG(ID, CONTENT) SELECT 'KartikTestBlog', 'Ye Kartik Ka Blog Hai!' WHERE NOT EXISTS (SELECT 1 FROM BLOG WHERE ID = 'KartikTestBlog');
+INSERT INTO BLOG(ID, CONTENT) SELECT 'KavailyaTestBlog', 'Ye Kaivalya Ka Blog Hai!' WHERE NOT EXISTS (SELECT 1 FROM BLOG WHERE ID = 'KavailyaTestBlog');
